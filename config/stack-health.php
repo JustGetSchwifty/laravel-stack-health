@@ -147,7 +147,7 @@ return [
     */
     'register_scheduler_heartbeat' => $toBool('STACK_HEALTH_REGISTER_SCHEDULER_HEARTBEAT', true),
 
-    'outbound_http' => $toBool('STACK_HEALTH_OUTBOUND_HTTP', false),
+    'outbound_http' => $toBool('STACK_HEALTH_OUTBOUND_HTTP', true),
 
     'outbound_http_url' => env('STACK_HEALTH_OUTBOUND_URL', 'https://www.google.com'),
 
