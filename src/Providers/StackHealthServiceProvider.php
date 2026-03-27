@@ -4,6 +4,7 @@ namespace JustGetSchwifty\LaravelStackHealth\Providers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Events\DiagnosingHealth;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Event;
@@ -32,6 +33,8 @@ class StackHealthServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->registerSchedulerHeartbeatSchedule();
+
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'stack-health');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'stack-health');
 
@@ -72,5 +75,38 @@ class StackHealthServiceProvider extends ServiceProvider
                 ->get($routePath, StackHealthController::class)
                 ->name($routeName);
         });
+    }
+
+    /**
+     * Register a one-minute heartbeat task so {@see \JustGetSchwifty\LaravelStackHealth\Services\StackHealth\Checks\SchedulerHeartbeatCheck}
+     * passes when `php artisan schedule:work` (or system cron) runs the Laravel scheduler.
+     */
+    private function registerSchedulerHeartbeatSchedule(): void
+    {
+        $app = $this->app;
+
+        $register = static function (Schedule $schedule) use ($app): void {
+            if (! filter_var($app['config']->get('stack-health.register_scheduler_heartbeat', true), FILTER_VALIDATE_BOOLEAN)) {
+                return;
+            }
+
+            $schedule->call(static function () use ($app): void {
+                $path = $app['config']->get('stack-health.scheduler_heartbeat_path');
+                if (! is_string($path) || $path === '') {
+                    $path = $app->storagePath('app/.scheduler-heartbeat');
+                }
+
+                file_put_contents($path, (string) time(), LOCK_EX);
+            })
+                ->everyMinute()
+                ->name('stack-health-scheduler-heartbeat')
+                ->withoutOverlapping();
+        };
+
+        $app->afterResolving(Schedule::class, $register);
+
+        if ($app->resolved(Schedule::class)) {
+            $register($app->make(Schedule::class));
+        }
     }
 }

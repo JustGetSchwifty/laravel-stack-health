@@ -2,7 +2,7 @@
 
 Operational health dashboard and `/up` diagnostics for Laravel applications.
 
-Current release: `1.0.0` (see `VERSION` file for local tooling).
+Current release: `1.0.1` (see `VERSION` file for local tooling).
 
 ## Versioning Policy
 

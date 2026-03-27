@@ -68,7 +68,7 @@ return [
         'scheduler_missing' => 'Heartbeat file missing — run the `scheduler` Docker service (`php artisan schedule:work`).',
         'scheduler_invalid' => 'Heartbeat file is empty or invalid.',
         'scheduler_stale' => 'Last heartbeat :seconds s ago (threshold :threshold s). Is the scheduler container running?',
-        'scheduler_ok' => 'Heartbeat :seconds s ago (schedule:work + `geoip:update` weekly when license key set).',
+        'scheduler_ok' => 'Heartbeat :seconds s ago (package registers a one-minute task when the Laravel scheduler runs).',
         'horizon_missing' => 'Horizon `masters` / `supervisors` indices are empty in Redis — start Horizon if you use it (`php artisan horizon`).',
         'horizon_ok' => 'Horizon indices: :masters master row(s), :supervisors supervisor row(s) in Redis.',
         'horizon_probe_error' => 'Horizon Redis probe failed.',

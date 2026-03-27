@@ -23,6 +23,7 @@ Main file: `config/stack-health.php`.
 - `STACK_HEALTH_OUTBOUND_URL`
 - `STACK_HEALTH_OUTBOUND_TIMEOUT`
 - `STACK_HEALTH_SCHEDULER_MAX_AGE`
+- `STACK_HEALTH_REGISTER_SCHEDULER_HEARTBEAT` (default `true`): register the every-minute heartbeat writer; set `false` only if you write the file yourself.
 - `STACK_HEALTH_SMTP_TIMEOUT`
 - `STACK_HEALTH_SMTP_VERIFY_SSL`
 - `STACK_HEALTH_HORIZON_REDIS_CONNECTION`

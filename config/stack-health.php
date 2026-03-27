@@ -141,6 +141,12 @@ return [
 
     'scheduler_heartbeat_max_age_seconds' => (int) env('STACK_HEALTH_SCHEDULER_MAX_AGE', 180),
 
+    /*
+    | When true, the package registers an every-minute scheduled callback that writes
+    | the scheduler heartbeat file (see scheduler_heartbeat_path). Disable if you register it yourself.
+    */
+    'register_scheduler_heartbeat' => $toBool('STACK_HEALTH_REGISTER_SCHEDULER_HEARTBEAT', true),
+
     'outbound_http' => $toBool('STACK_HEALTH_OUTBOUND_HTTP', false),
 
     'outbound_http_url' => env('STACK_HEALTH_OUTBOUND_URL', 'https://www.google.com'),

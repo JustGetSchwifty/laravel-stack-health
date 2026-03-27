@@ -6,7 +6,8 @@ use JustGetSchwifty\LaravelStackHealth\Services\StackHealth\Contracts\StackHealt
 use JustGetSchwifty\LaravelStackHealth\Services\StackHealth\Data\StackHealthItemResult;
 
 /**
- * Reads the scheduler heartbeat file written by {@see bootstrap/app.php} schedule so silent cron failures surface.
+ * Reads the scheduler heartbeat file updated by the package's registered schedule
+ * ({@see \JustGetSchwifty\LaravelStackHealth\Providers\StackHealthServiceProvider}) so silent cron / `schedule:work` failures surface.
  */
 final class SchedulerHeartbeatCheck implements StackHealthCheckContract
 {
