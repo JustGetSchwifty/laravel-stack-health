@@ -3,4 +3,16 @@
 /.idea
 /.vscode
 /.phpunit.result.cache
-/.DS_Store
+
+# macOS / OS artifacts
+.DS_Store
+__MACOSX/
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Editor temp files
+*.swp
+*.swo
+*~
