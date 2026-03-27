@@ -1,0 +1,15 @@
+---
+description: Core package guardrails for AI-assisted changes
+alwaysApply: true
+---
+
+# Core Agent Policy
+
+Use `@AGENTS.md` as the canonical instruction set for this repository.
+
+Apply these minimum rules in every task:
+
+- Keep code artifacts in English.
+- Do not hardcode translatable UI strings.
+- Never introduce secrets or private credentials.
+- Run relevant validation/tests after changes and report what ran.

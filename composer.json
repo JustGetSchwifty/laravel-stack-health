@@ -1,0 +1,64 @@
+{
+    "name": "justgetschwifty/laravel-stack-health",
+    "description": "Operational health dashboard and /up diagnostics for Laravel applications.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "health",
+        "monitoring",
+        "dashboard",
+        "ops"
+    ],
+    "homepage": "https://github.com/JustGetSchwifty/laravel-stack-health",
+    "authors": [
+        {
+            "name": "JustGetSchwifty"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "guzzlehttp/guzzle": "^7.8",
+        "illuminate/contracts": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "illuminate/view": "^12.0|^13.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^12.0|^13.0",
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.0|^12.0",
+        "laravel/pint": "^1.0",
+        "mockery/mockery": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "JustGetSchwifty\\LaravelStackHealth\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JustGetSchwifty\\LaravelStackHealth\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "JustGetSchwifty\\LaravelStackHealth\\Providers\\StackHealthServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "pint": "pint",
+        "pint:test": "pint --test",
+        "check:composer": "composer validate --strict"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
